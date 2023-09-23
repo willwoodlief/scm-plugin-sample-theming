@@ -10,13 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @mixin Builder
  * @mixin \Illuminate\Database\Query\Builder
- * @property int id
- * @property int invoice_id
- * @property string invoice_importance
- * @property string invoice_color_code
- * @property string created_at
- * @property string updated_at
- *
+ * @property int $id
+ * @property int $invoice_id
+ * @property string $invoice_importance
+ * @property string $invoice_color_code
+ * @property string $created_at
+ * @property string $updated_at
  */
 class ScmPluginSampleInventory extends Model {
 
@@ -43,7 +42,5 @@ class ScmPluginSampleInventory extends Model {
         'invoice_importance',
         'invoice_color_code'
     ];
-
-
 
 }
