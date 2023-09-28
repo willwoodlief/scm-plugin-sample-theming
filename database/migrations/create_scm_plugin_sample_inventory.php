@@ -1,9 +1,20 @@
 <?php
-
+/**
+ * This database migration was registered  in the @see \Scm\PluginSampleTheming\ScmSampleThemingProvider
+ *
+ *
+ *
+ * it will show up as a new migration, to be run via the `php artisan migrate` command.
+ *
+ * When the plugin is deactivated, the migration will go away, but the db is not changed in this example
+ */
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Migration class for the plugin example
+ */
 return new class extends Migration
 {
     public function up()

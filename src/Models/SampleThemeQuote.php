@@ -2,6 +2,9 @@
 
 namespace Scm\PluginSampleTheming\Models;
 
+/**
+ * This is just a helper class for the web service we use for the quotes
+ */
 class SampleThemeQuote {
     protected ?string $_id = null;
     protected ?string $content = null;

@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * This route file was registered in the :php:class:`Scm\PluginSampleTheming\ScmSampleThemingProvider`
+ *
+ * It will call the controller at the :php:class:`Scm\PluginSampleTheming\Controllers\SampleThemeController`
+ */
 use Illuminate\Support\Facades\Route;
 
 

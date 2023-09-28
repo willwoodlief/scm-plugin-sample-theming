@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 
 /**
+ * This is an example model used in the plugin that reads and writes to the new db table we defined in the migrations
+ *
  * @mixin Builder
  * @mixin \Illuminate\Database\Query\Builder
  * @property int $id
