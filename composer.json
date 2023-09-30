@@ -43,7 +43,7 @@
                 "alias": "resources",
                 "relative_path":"resources/dist"
             },
-            "plugin_active": "yes"
+            "plugin_active": "no"
         }
     },
     "minimum-stability": "dev",
