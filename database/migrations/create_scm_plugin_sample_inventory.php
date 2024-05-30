@@ -30,7 +30,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             $table->integer('invoice_importance')->default(0)->nullable(false);
-            $table->string('invoice_color_code')->collation('utf8mb4_0900_ai_ci')->charset('utf8mb4')->nullable();
+            $table->string('invoice_color_code')->nullable();
 
             $table->timestamps();
         });
