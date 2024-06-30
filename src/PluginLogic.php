@@ -1,15 +1,16 @@
 <?php
 namespace Scm\PluginSampleTheming;
 
-use App\Helpers\Projects\ProjectFile;
+
 use App\Helpers\Utilities;
 use App\Models\Invoice;
+use App\Models\ProjectFile;
 use App\Plugins\Plugin;
-use Illuminate\Support\Facades\Log;
+
 use Illuminate\Support\Facades\Route;
 use Scm\PluginSampleTheming\Facades\ScmSampleTheming;
 use Scm\PluginSampleTheming\Models\ScmPluginSampleInventory;
-use Scm\PluginSampleTheming\Models\UrlProjectFile;
+use Scm\PluginSampleTheming\Models\UrlProjectFileHelper;
 use TorMorten\Eventy\Facades\Eventy;
 
 /**
@@ -245,36 +246,36 @@ class PluginLogic extends Plugin {
             5, 3);
 
         /* Plugin files */
-        Eventy::addAction(Plugin::ACTION_START_DISCOVERY_PROJECT_FILES, function( \App\Models\Project $project):void {
-               //Log::debug("Project starting file discovery",['project'=>$project->toArray()]);
-        }, 20, 2);
 
-        Eventy::addFilter(Plugin::FILTER_DISCOVER_PROJECT_FILE, function( ProjectFile $project_file): ?ProjectFile {
-              //Log::debug("Project file found",['project_file'=>$project_file->toArray()]);
-            // return null; // if do not want this file displayed
-            return $project_file;
-        }, 20, 2);
+
 
         /**
          * @returns ProjectFile[]
          */
-        Eventy::addFilter(Plugin::FILTER_APPEND_PROJECT_FILES, function( array $extra_project_files ): array {
-            $extra_project_files[] = new UrlProjectFile('https://upload.wikimedia.org/wikipedia/commons/6/6d/CatD9T.jpg','totally-not-on-this-file-system');
-             return $extra_project_files;
-        }, 20, 2);
+        Eventy::addFilter(Plugin::MANAGE_PROJECT_FILES,
+            /**
+             * @param ProjectFile[] $extra_project_files
+             */
+            function(array $extra_project_files ): array {
+                if (!count($extra_project_files) ) {return $extra_project_files;}
+                $project_id = $extra_project_files[0]?->project_id;
+                $extra_project_files[] = new UrlProjectFileHelper($project_id,'https://upload.wikimedia.org/wikipedia/commons/6/6d/CatD9T.jpg','totally-not-on-this-file-system');
+                return $extra_project_files;
+            },
+        20, 2);
 
         Eventy::addFilter(Plugin::FILTER_SORT_PROJECT_FILES, function( array $all_project_files ): array {
-             //do some sorting on the array $all_project_files
+             //do some sorting on the array $all_project_files, here we are just repeating the original sort, but can do things like put the files managed here on top
 
-            usort($all_project_files, function(ProjectFile $a,ProjectFile $b)  {
-                return $a <=> $b;
+            usort($all_project_files, function(ProjectFile $a, ProjectFile $b)  {
+                $comp =  $a->file_display_order <=> $b->file_display_order;
+                if (!$comp) {
+                    $comp =  $a->id <=> $b->id;
+                }
+                return $comp;
             });
              return $all_project_files;
         }, 20, 2);
 
-
-        Eventy::addAction(Plugin::ACTION_BEFORE_DELETING_PROJECT_FILE, function( ProjectFile $project_file):void {
-            Log::debug("file for project about to be deleted",['project_file'=>$project_file->toArray()]);
-        }, 20, 2);
     }
 }
