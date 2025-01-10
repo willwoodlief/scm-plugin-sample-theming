@@ -4,12 +4,12 @@ namespace Scm\PluginSampleTheming\Models;
 
 
 use App\Models\ProjectFile;
-use App\Plugins\EventConstants\ModelActions;
+use App\Plugins\Plugin;
 
 /**
  * This shows how a ProjectFile can be extended to allow for remote content, or to handle files differently than the core logic
  *
- * This class is used in the demonstration of the @see ModelActions::ALL_PROJECT_FILE_EVENTS
+ * This class is used in the demonstration of the @see Plugin::ALL_PROJECT_FILE_EVENTS
  *
  * When overloading existing project files, find the target project file that is the base, copy over the attributes as needed, and replace the child with the derived.
  * And return that substitute in the MANAGE_PROJECT_FILES filter
