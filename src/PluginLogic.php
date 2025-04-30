@@ -76,7 +76,7 @@ class PluginLogic extends Plugin {
      * ```php
      * Eventy::addFilter(Plugin::FILTER_FRAME_EXTRA_HEAD, function( string $stuff) {
      *
-     *      $link = ScmSampleTheming::getPluginRef()->getResourceUrl('css/sample-theming-plugin.css')."?".time();
+     *      $link = ScmSampleTheming::getPluginRef()->getResourceUrl('css/sample-theming-plugin.css');
      *      return $stuff.
      *      "<link href='$link' rel='stylesheet'>";
      *  }, 20, 1);
@@ -182,7 +182,7 @@ class PluginLogic extends Plugin {
 
         Eventy::addFilter(Plugin::FILTER_FRAME_EXTRA_HEAD, function( string $stuff) {
 
-            $link = ScmSampleTheming::getPluginRef()->getResourceUrl('css/sample-theming-plugin.css')."?".time();
+            $link = ScmSampleTheming::getPluginRef()->getResourceUrl('css/sample-theming-plugin.css');
             return $stuff.
                 "<link href='$link' rel='stylesheet'>";
         }, 20, 1);
