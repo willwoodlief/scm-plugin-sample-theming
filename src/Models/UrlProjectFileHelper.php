@@ -54,7 +54,7 @@ class UrlProjectFileHelper extends ProjectFile {
 
     }
 
-    public function get_url(): ?string
+    public function getFileUrl(): ?string
     {
         return $this->url;
     }
