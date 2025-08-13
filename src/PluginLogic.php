@@ -249,20 +249,6 @@ class PluginLogic extends Plugin {
 
 
 
-        /**
-         * @returns ProjectFile[]
-         */
-        Eventy::addFilter(Plugin::MANAGE_PROJECT_FILES,
-            /**
-             * @param ProjectFile[] $extra_project_files
-             */
-            function(array $extra_project_files ): array {
-                if (!count($extra_project_files) ) {return $extra_project_files;}
-                $project_id = $extra_project_files[0]?->project_id;
-                $extra_project_files[] = new UrlProjectFileHelper($project_id,'https://upload.wikimedia.org/wikipedia/commons/6/6d/CatD9T.jpg','totally-not-on-this-file-system');
-                return $extra_project_files;
-            },
-        20, 1);
 
         Eventy::addFilter(Plugin::FILTER_SORT_PROJECT_FILES, function( array $all_project_files ): array {
              //do some sorting on the array $all_project_files, here we are just repeating the original sort, but can do things like put the files managed here on top
